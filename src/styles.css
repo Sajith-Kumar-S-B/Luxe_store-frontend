@@ -1,1 +1,96 @@
 /* You can add global styles to this file, and also import other style files */
+
+
+body,html {
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    user-select: none;
+    box-sizing: border-box;
+    border-collapse: collapse
+}
+
+* {
+    box-sizing: border-box;
+    border-collapse: inherit;
+    text-rendering: optimizeLegibility;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+    -webkit-tap-highlight-color: transparent
+}
+
+*,*:after,*:before {
+    box-sizing: inherit
+}
+
+*:not(body) {
+    background-repeat: no-repeat;
+    background-position: 50%;
+    background-size: cover
+}
+
+menu,ol,ul {
+    margin: 0;
+    padding: 0;
+    list-style: none
+}
+
+li {
+    margin: 0;
+    padding: 0
+}
+
+a {
+    outline: none;
+    color: inherit;
+    text-decoration: none
+}
+
+img {
+    width: 100%;
+    border: none;
+    display: block;
+    pointer-events: none
+}
+
+p,small {
+    margin: 0;
+    padding: 0
+}
+
+figure,form {
+    margin: 0
+}
+
+fieldset {
+    border: none;
+    margin: 0;
+    padding: 0
+}
+
+blockquote,h1,h2,h3,h4,h5,p {
+    margin: 0;
+    font-weight: normal
+}
+
+hr {
+    margin: 0;
+    border: 0
+}
+
+button {
+    padding: 0;
+    border: none;
+    outline: none;
+    background: transparent
+}
+
+body {
+    color: #202020;
+    background: white;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    font-family: 'Source Sans Pro'
+}
