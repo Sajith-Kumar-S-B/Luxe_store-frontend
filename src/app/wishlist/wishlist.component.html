@@ -1,0 +1,43 @@
+<app-header></app-header>
+
+<div style="margin-top: 100px;"> 
+    <div *ngIf="wishlistProducts.length===0"  class="empty-wishlist mt-5 mb-3 d-flex justify-content-center align-items-center w-100 flex-column">
+    <img class="img-fluid w-25" src="https://cdni.iconscout.com/illustration/premium/thumb/empty-cart-5521508-4610092.png" alt="image">
+    <h2 class="text-danger mb-3">Your Wishlist is Empty</h2>
+    <button  class="btn btn-outline-dark" routerLink="">Add more Items</button>
+</div>
+<div *ngIf="wishlistProducts.length>0"  class="wishlist">
+    <h1 class="text-danger text-center ps-5">Your Wishlist</h1>
+    <div  class="container px-4 px-lg-5 mt-5">
+        <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+          <div *ngFor="let product of wishlistProducts" class="col mb-5"  >
+            <div class="card h-100 shadow">
+              <!-- Product image-->
+              <img routerLink="/view/{{product.id}}" [src]="product.image" height="250px"  class="card-img-top" 
+                alt="..." />
+              <!-- Product details-->
+              <div class="card-body p-4">
+                <div class="text-center">
+                  <!-- Product name-->
+                  <h5 class="">{{product.title.slice(0,20)}}</h5>
+                  <!-- Product price-->
+                 ${{product.price}}
+                </div>
+              </div>
+              <!-- Product actions-->
+              <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                <div class="d-flex justify-content-between">
+                  <button (click)="removeFromWishlist(product._id)"  class="btn"><i style="font-size: 25px;"  class="text-danger fa-solid fa-heart-circle-minus"></i></button>
+                  <button (click)="addToCart(product)" class="btn"><i style="font-size: 25px;"
+                      class="fa-solid fa-cart-plus text-success me-1"></i></button>
+  
+                </div>
+              </div>
+            </div>
+          </div>
+  
+        </div>
+      </div>
+      <app-footer></app-footer>
+</div>
+</div>

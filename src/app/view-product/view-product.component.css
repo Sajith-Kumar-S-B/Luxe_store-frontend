@@ -1,0 +1,10 @@
+img{
+    transition: 1s;
+}
+
+.prev .image{
+    overflow: hidden;
+}
+.prev:hover img{
+    scale: 1.2;
+}

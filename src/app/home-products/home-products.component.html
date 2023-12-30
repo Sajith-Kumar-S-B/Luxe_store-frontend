@@ -1,6 +1,7 @@
+<app-header></app-header>
 <div style="margin-top: 70px;">
-
-    <header>
+<div><img [src]="bannerImage" alt=""></div>
+    <header>     
         <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
             <div class="carousel-inner">
               <div class="carousel-item active p-5">
@@ -24,7 +25,7 @@
                       WOMEN'S COLLECTION
                     </h1>
                     <p class="mt-2">NEW ARRIVALS ARE HERE</p>
-                    <button class="btn rounded-0 btn-outline-light mt-3">Shop Now</button>
+                    <button routerLink="/women/all-products" class="btn rounded-0 btn-outline-light mt-3">Shop Now</button>
                   </div>
               </div>
                <div class="carousel-item p-5">
@@ -36,7 +37,7 @@
                       MEN'S COLLECTION
                     </h1>
                     <p class="mt-2">NEW ARRIVALS ARE HERE</p>
-                    <button class="btn rounded-0 btn-outline-light mt-3">Shop Now</button>
+                    <button routerLink="/men/all-products" class="btn rounded-0 btn-outline-light mt-3">Shop Now</button>
                   </div>
               </div>
               <div class="carousel-item p-5">
@@ -64,31 +65,47 @@
     </header>
 
     
+    <div class="hover15 d-flex justify-content-center align-items-center">
+      <div  *ngFor="let womenproduct of womenProducts" class="figure rounded-0 h-100">
+        <img [src]="womenproduct.image" alt="">
+      </div>
+     
+    </div>
+
+    <div  ><img [src]="bannerTwo" alt=""></div>
+ <div><img src="https://assets.ajio.com/cms/AJIO/WEB/D-1.0-MHP-28122023-mainbanner-z1-p6-LOUISPHILIPPE-VANHEUSEN-UPTO40.jpg" alt=""></div>
   
-    <!-- Section-->
+    <!-- Section men-->
     <section class="py-5">
         <div class="container px-4 px-lg-5 mt-5">
             <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
-                <div class="col mb-5">
+                <div *ngFor="let menproduct of menProducts | search:searchString:'title'" class="col mb-5">
                     <div class="card h-100 shadow">
                         <!-- Product image-->
-                        <img class="card-img-top" routerLink="view/1" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="..." />
+                        <div  routerLink="/view/men/{{menproduct._id}}" class="image">
+                        <img class="card-img-top" height="300px" [src]="menproduct.image" alt="..." />
+                        </div>
                         <!-- Product details-->
                         <div class="card-body p-4">
                             <div class="text-center">
                                 <!-- Product name-->
-                                <h5 class="fw-bolder">Fancy Product</h5>
+                                <h5 class="">{{menproduct.title.slice(0,30)}}</h5>
                                 <!-- Product price-->
-                                $40.00 
+                                ${{menproduct.price}} 
+                              
                             </div>
+                            <div class="text-center">
+                              <app-rating [rating]="menproduct.rating.rate"></app-rating>
+                            </div>
+                           
                         </div>
                         <!-- Product actions-->
                         <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
                             <div class="d-flex justify-content-between">
-                                <button class="btn"><i style="height: 40px;"
-                                    class="fa-solid fa-heart-circle-plus text-danger me-1 fa-2x"></i></button>
-                                <button  class="btn"><i style="height: 40px;"
-                                    class="fa-solid fa-cart-plus text-success me-1 fa-2x"></i></button>
+                                <button (click)="addToWishlist(menproduct)" class="btn"><i 
+                                    class="fa-solid fa-heart-circle-plus text-danger me-1 fs-4"></i></button>
+                                <button (click)="addToCart(menproduct)" class="btn"><i style="color: #866528;"
+                                    class="fa-solid fa-shopping-bag  me-1 fs-4"></i></button>
                 
                               </div>
                         </div>
@@ -97,5 +114,65 @@
                 
             </div>
         </div>
+
+        <div class="text-center">
+          <button routerLink="/men/all-products" class="btn btn-outline-dark rounded-0"> View All Men Collection</button>
+         </div>
     </section>
+
+    
+    <div class="mb-4"><img [src]="bannerThree" alt=""></div>
+   
+    <div ><img [src]="bannerFour" alt=""></div>
+
+    <!-- Section women-->
+    <section class="py-5">
+        <div class="container px-4 px-lg-5 mt-5">
+            <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+                <div *ngFor="let womenproduct of womenProducts | search:searchString:'title'" class="col mb-5">
+                    <div class="card h-100 shadow">
+                        <!-- Product image-->
+                        <div  routerLink="/view/women/{{womenproduct._id}}" class="image">
+                          <img class="card-img-top" width="100%" height="300px" [src]="womenproduct.image" alt="..." />
+
+                        </div>
+                        <!-- Product details-->
+                        <div class="card-body p-4">
+                            <div class="text-center">
+                                <!-- Product name-->
+                                <h5 class="">{{womenproduct.title.slice(0,25)}}</h5>
+                                <!-- Product price-->
+                                $ {{womenproduct.price}}
+                            </div>
+                            <div class="text-center">
+                              <app-rating [rating]="womenproduct.rating.rate"></app-rating>
+                            </div>
+                        </div>
+                        <!-- Product actions-->
+                        <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                            <div class="d-flex justify-content-between">
+                                <button (click)="addToWishlist(womenproduct)" class="btn"><i 
+                                    class="fa-solid fa-heart-circle-plus text-danger fs-4 me-1"></i></button>
+                                <button (click)="addToCart(womenproduct)" class="btn"><i  style="color: #866528;"
+                                    class="fa-solid fa-shopping-bag fs-4 me-1"></i></button>
+                
+                              </div>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+        <div class="text-center">
+          <button routerLink="/women/all-products" class="btn btn-outline-dark rounded-0"> View All Women Collection</button>
+         </div>
+    </section>
+    <div class="hover15 d-flex justify-content-center align-items-center">
+      <div  *ngFor="let menproduct of menProducts" class="figure rounded-0 h-100">
+        <img [src]="menproduct.image" alt="">
+      </div>
+     
+    </div>
 </div>
+
+<app-footer></app-footer>

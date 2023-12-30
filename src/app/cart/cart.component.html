@@ -1,0 +1,65 @@
+<app-header></app-header>
+
+<div style="margin-top: 80px;">  <div *ngIf="cartItems.length===0"  class="empty-cart mt-5 mb-3 d-flex justify-content-center align-items-center w-100 flex-column">
+    <img class="img-fluid w-25" src="https://cdni.iconscout.com/illustration/premium/thumb/empty-cart-7236766-5875081.png" alt="image">
+    <h2 class="text-danger mb-3">Your bag is Empty</h2>
+    <button  class="btn btn-outline-dark rounded" routerLink="">Add more Items</button>
+</div>
+<div *ngIf="cartItems.length>0"  class="wishlist">
+  <div class="container px-4 px-lg-5 mt-5"> 
+     <h1 class="text-danger">Cart Summary</h1>
+     <div class="row">
+        <div  class="col-lg-8">
+            <table class="table border border-2 mt-5">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Product Name</th>
+                        <th>Image</th>
+                        <th>Quantity</th>
+                        <th>Price</th>
+                        <th><i class="fa-solid fa-ellipsis-vertical"></i></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let product of cartItems;let i=index;" >
+                        <td>{{i+1}}</td>
+                        <td>{{product.title.slice(0,20)}}</td>
+                        <td><img class="rounded" width="100px" height="100px" [src]="product.image" alt="image"></td>
+                       
+                        <td>
+                           <div class="d-flex">
+                                <button (click)="decrementCart(product._id)" class="btn fw-bolder">-</button>
+                                 <input class="form-control text-center px-2 me-3" id="inputQuantity" type="num" [value]="product.quantity" style="max-width: 3rem" readonly/>
+                                <button (click)="incrementCart(product._id)" class="btn fw-bolder">+</button>
+                           </div>
+                        </td>
+                        <td>${{product.grandTotal}}</td>
+                        <td><button (click)="removeCartItem(product._id)" class="btn"><i class="fa-solid fa-trash text-danger"></i></button></td>
+                    </tr>
+                 
+                </tbody>
+
+            </table>
+            <div class="actions  w-100">
+                <button (click)="emptyCart()" class="btn btn-outline-dark float-end">Empty Cart</button>
+                <button routerLink="" class="btn btn-outline-dark float-end me-2">Add More item</button>
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <div class="border rounded p-3">
+                <h3>Sub Total : <span class="text-danger">${{cartTotalPrice}}</span></h3>
+                <hr>
+                <div class="d-grid mt-5">
+                    <button (click)="checkout()" class="btn btn-outline-dark">Check out</button>
+                </div>
+            </div>
+        </div>
+     </div>
+    
+    </div>
+
+    <app-footer></app-footer>
+  
+</div>
+</div>

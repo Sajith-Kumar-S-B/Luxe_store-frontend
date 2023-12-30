@@ -1,0 +1,44 @@
+
+<app-header></app-header>
+
+<div style="margin-top: 80px;"> 
+    <section >
+    <div class="container p-5 px-lg-5 my-5">
+        <div class="row gx-4 gx-lg-5 align-items-center">
+            <div class="prev col-md-5">
+                <div class="image">
+                    <img height="400px" width="150px" [src]="menproduct.image"  class="card-img-top mb-5 mb-md-0 rounded"  alt="..." />
+
+                </div>
+                
+            </div>
+            <div class="col md-1"></div>
+            <div class="col-md-6">
+              
+            <h1 class="display-5 mb-3">{{menproduct.title}} </h1>
+         <app-rating [rating]="menproduct.rating.rate"></app-rating>
+                <div class="fs-5 mb-3">
+                    <span>$ {{menproduct.price}} </span>
+                </div>
+                <p class="mb-2" style="text-align: justify;"><strong class="fs-5" >Description :</strong><br>
+                    {{menproduct.description}}
+               </p>
+               <div class="small mb-4">Product ID : {{menproduct._id.slice(0,7)}} </div>
+                <div class="d-flex justify-content-between">
+                    <!-- <input class="form-control text-center me-3" id="inputQuantity" type="num" value="1" style="max-width: 3rem" /> -->
+                    <button (click)="addToWishlist(menproduct)" style="background-color: #866528;"  class=" px-3 text-light flex-shrink-0 rounded" type="button">
+                        <i class="fa-solid fa-heart text-light me-1"></i>
+                        Add to wishlist
+                    </button>
+                    <button (click)="addToCart(menproduct)" style="background-color: #866528;" class="btn px-3 text-light flex-shrink-0" type="button">
+                        <i class="fa-solid fa-bag-shopping text-light me-1"></i>
+                        Add to bag
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+</div>
+<app-footer></app-footer>

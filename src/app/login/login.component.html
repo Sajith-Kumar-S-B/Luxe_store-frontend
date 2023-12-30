@@ -1,0 +1,42 @@
+<div style="width: 100%; height: 100vh;" class="d-flex justify-content-center align-items-center">
+    <div class="shadow  row rounded border w-50">
+      <div style="background: url(https://i.pinimg.com/736x/b1/df/41/b1df4120ee171a711ebb67e8b0a15c2f.jpg);background-position: center;background-size: cover;" class="col-lg-6 rounded-start ">
+        <!-- <img class="w-100" height="100%" src="https://talk-retail.co.uk/wp-content/uploads/2021/04/shutterstock_1558580411.jpg" alt=""> -->
+      </div>
+      <div  class="col-lg-6 p-5">
+        <form [formGroup]="loginForm" (ngSubmit)="login()"  >
+            <h1 class=" mb-5">Login</h1>
+          
+
+            <div class="form-floating mb-3 ">
+              
+                <input type="email" class="form-control" name="email" id="floatingInput" placeholder="name@example.com" formControlName="email" >
+                <label  for="floatingInput">Email address</label>
+              </div>
+              <!-- Invalid email -->
+            
+              <div *ngIf="this.loginForm.get('email')?.errors&&this.loginForm.get('email')?.touched" style="font-size: 14px;"  class="mb-3  text-danger">
+                *Invalid email
+              </div>
+              <div class="form-floating mb-3 ">
+                
+                <input type="password" id="floatingPassword" placeholder="password" class="form-control" name="password" formControlName="password" >
+                <label for="floatingPassword">Password</label>
+              </div>
+               <!-- Invalid password -->
+               
+               <div *ngIf="this.loginForm.get('password')?.errors&&this.loginForm.get('password')?.touched" style="font-size: 14px;" class="mb-3 text-danger">
+                *Invalid  Password
+              </div>
+              <div class="d-grid">
+                <button  type="submit" class="btn btn-outline-dark">Login</button></div>
+                
+        </form>
+        <p class="text-center mt-4">Don't have an account?click here to <a  routerLink="/user/register" class="text-primary">Register</a></p>
+      </div>
+     
+    </div>
+</div>
+<div class="position-absolute top-0">
+  <img [src]="image" alt="">
+</div>

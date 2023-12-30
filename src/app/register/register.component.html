@@ -1,0 +1,52 @@
+<div style="width: 100%; height: 100vh;" class="d-flex justify-content-center align-items-center">
+  
+    <div class="shadow  row rounded border w-75">
+      <div style="background: url(https://talk-retail.co.uk/wp-content/uploads/2021/04/shutterstock_1558580411.jpg);background-position: center;background-size: cover;" class="col-lg-6 rounded-start">
+        <!-- <img class="w-100" height="100%" src="https://talk-retail.co.uk/wp-content/uploads/2021/04/shutterstock_1558580411.jpg" alt=""> -->
+      </div>
+      <div class="col-lg-6 p-5">
+        <form [formGroup]="registerForm" (ngSubmit)="register()" >
+            <h1 class=" mb-5">Sign Up</h1>
+            <div class="form-floating mb-3">
+              
+                <input type="text" class="form-control" name="username" id="floatingInput" placeholder="Username"   formControlName="username">
+                <label  for="floatingInput">Username</label>
+              </div>
+              <!-- validation username -->
+              <div *ngIf="this.registerForm.get('username')?.errors&&this.registerForm.get('username')?.touched"  style="font-size: 14px;" class="mb-3 text-danger">
+                *Invalid UserName
+              </div>
+
+
+            <div class="form-floating mb-3 ">
+              
+                <input  type="email" class="form-control" name="email" id="floatingInput" placeholder="name@example.com" formControlName="email" >
+                <label  for="floatingInput">Email address</label>
+              </div>
+              <!-- Invalid email -->
+            
+              <div *ngIf="this.registerForm.get('email')?.errors&&this.registerForm.get('email')?.touched"  style="font-size: 14px;"  class="mb-3  text-danger">
+                *Invalid email
+              </div>
+              <div class="form-floating mb-3 ">
+                
+                <input type="password" id="floatingPassword" placeholder="password" class="form-control" name="password" formControlName="password" >
+                <label for="floatingPassword">Password</label>
+              </div>
+               <!-- Invalid password -->
+               
+               <div *ngIf="this.registerForm.get('password')?.errors&&this.registerForm.get('password')?.touched" style="font-size: 14px;"  class="mb-3  text-danger">
+                *Invalid  Password
+              </div>
+              <div class="d-grid">
+                <button  type="submit" class="btn btn-outline-dark">Register</button></div>
+                
+        </form>
+        <p class="text-center mt-4">Already User?click here to <a  routerLink="/user/login" class="text-primary">Login</a></p>
+      </div>
+     
+    </div>
+</div>
+<div class="position-absolute top-0">
+  <img [src]="image" alt="">
+</div>

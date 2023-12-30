@@ -3,49 +3,41 @@ import { ApiService } from '../services/api.service';
 import { ToasterService } from '../services/toaster.service';
 
 @Component({
-  selector: 'app-home-products',
-  templateUrl: './home-products.component.html',
-  styleUrls: ['./home-products.component.css']
+  selector: 'app-men-collection',
+  templateUrl: './men-collection.component.html',
+  styleUrls: ['./men-collection.component.css']
 })
-export class HomeProductsComponent implements OnInit{
-     bannerImage:string = "./assets/Images/D-1.0-UHP-22122023-URGENCYSTRIPS-LastFewHrs.gif"
-     bannerTwo:string = "./assets/Images/D-1.0-UHP-07122023-FORHER-header.webp"
-     bannerThree:string = "./assets/Images/D-1.0-UHP-07122023-FORHIM-header.webp"
-    bannerFour:string = "./assets/Images/58afd928-34c3-43bd-b58e-60b2adab6d3e.webp"
-     menProducts:any = []
-     womenProducts:any = []
-     searchString:string=""
+export class MenCollectionComponent implements OnInit{
 
-     constructor(private api:ApiService,private toaster:ToasterService){}
 
-   ngOnInit(): void {
-     this.api.getHomeMenProductsApi().subscribe((res:any)=>{
-      this.menProducts = res
+  menCollection :any =[]
+  searchString:string=""
+
+  constructor(private api:ApiService,private toaster:ToasterService){}
+
+  ngOnInit(): void {
+    this.api.getAllMenProductsApi().subscribe((res:any)=>{
+       this.menCollection = res
     })
-    this.api.getHomeWomenProductsApi().subscribe((res:any)=>{
-      this.womenProducts = res
-    })
-
     this.api.searchKey.subscribe((data:any)=>{
       this.searchString = data
     })
-
-   }
-   getWishlist(){
+  }
+  getWishlist(){
     this.api.getWishlistApi().subscribe((res:any)=>{
       // this.wishlistProducts = res
       this.api.getWishlistCount()
     })
   }
-
-
-   addToWishlist(product:any){
+  
+  addToWishlist(product:any){
     if(sessionStorage.getItem("token")){
       this.api.AddToWishlistApi(product).subscribe({
         next:(res:any)=>{
           this.toaster.showSuccess(`${res.title} added to your wishlist`)
           // this.api.getWishlistCount()
-         this.getWishlist()
+          this.getWishlist()
+
         },
         error:(err:any)=>{
           this.toaster.showWarning(err.error)
@@ -57,7 +49,6 @@ export class HomeProductsComponent implements OnInit{
       this.toaster.showWarning('Please Login')
     }
       }
-
 
       addToCart(product:any){
         if(sessionStorage.getItem("token")){
@@ -78,4 +69,6 @@ export class HomeProductsComponent implements OnInit{
           this.toaster.showWarning('please Login')
         }
       }
+
+
 }
